@@ -19,10 +19,10 @@ permissions:
 jobs:
   claude-code:
     if: >
-      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude-code') || contains(github.event.issue.title, '@claude-code'))) ||
-      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude-code')) ||
-      (github.event_name == 'pull_request' && (contains(github.event.pull_request.body, '@claude-code') || contains(github.event.pull_request.title, '@claude-code'))) ||
-      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude-code'))
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude'))) ||
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request' && (contains(github.event.pull_request.body, '@claude') || contains(github.event.pull_request.title, '@claude'))) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude'))
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
