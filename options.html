@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discord Share - 設定</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>
+        <svg class="discord-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+        Discord Share 設定
+      </h1>
+    </header>
+
+    <div class="tabs">
+      <button class="tab-button active" data-tab="webhook">Webhook設定</button>
+      <button class="tab-button" data-tab="tags">タグ管理</button>
+      <button class="tab-button" data-tab="history">送信履歴</button>
+      <button class="tab-button" data-tab="about">情報</button>
+    </div>
+
+    <!-- Webhook設定タブ -->
+    <div class="tab-content active" id="webhook-tab">
+      <section class="section">
+        <h2>Discord Webhook URL</h2>
+        <p class="description">
+          Discord サーバーの設定から Webhook URL を取得して入力してください。
+        </p>
+        
+        <div class="input-group">
+          <input type="text" id="webhookUrl" class="input-field" placeholder="https://discord.com/api/webhooks/...">
+          <button id="testWebhook" class="button button-secondary">接続テスト</button>
+        </div>
+        
+        <div id="webhookStatus" class="status-message"></div>
+        
+        <button id="saveWebhook" class="button button-primary">保存</button>
+        
+        <details class="help-section">
+          <summary>Webhook URLの取得方法</summary>
+          <ol>
+            <li>Discord でメッセージを送信したいチャンネルを右クリック</li>
+            <li>「チャンネルの編集」を選択</li>
+            <li>左メニューの「連携サービス」を選択</li>
+            <li>「Webhookを作成」をクリック</li>
+            <li>Webhook の名前を設定（例：Chrome Extension）</li>
+            <li>「Webhook URLをコピー」をクリック</li>
+            <li>上記の入力欄に貼り付けて保存</li>
+          </ol>
+        </details>
+      </section>
+    </div>
+
+    <!-- タグ管理タブ -->
+    <div class="tab-content" id="tags-tab">
+      <section class="section">
+        <h2>よく使うタグ</h2>
+        <p class="description">
+          頻繁に使用するタグを登録しておくと、簡単に追加できます。
+        </p>
+        
+        <div class="tag-management">
+          <div class="input-group">
+            <input type="text" id="newTag" class="input-field" placeholder="新しいタグを入力（例：#important）">
+            <button id="addTag" class="button button-secondary">追加</button>
+          </div>
+          
+          <div id="savedTags" class="saved-tags"></div>
+        </div>
+        
+        <h3>タグ使用統計</h3>
+        <div id="tagStats" class="tag-stats"></div>
+      </section>
+    </div>
+
+    <!-- 送信履歴タブ -->
+    <div class="tab-content" id="history-tab">
+      <section class="section">
+        <h2>送信履歴</h2>
+        <p class="description">
+          最近送信したページの履歴（最新100件）
+        </p>
+        
+        <div class="history-controls">
+          <button id="clearHistory" class="button button-danger">履歴をクリア</button>
+        </div>
+        
+        <div id="historyList" class="history-list"></div>
+      </section>
+    </div>
+
+    <!-- 情報タブ -->
+    <div class="tab-content" id="about-tab">
+      <section class="section">
+        <h2>Discord Share Extension</h2>
+        <p class="description">
+          現在のページをタグ付きでDiscordに共有する拡張機能
+        </p>
+        
+        <div class="info-item">
+          <strong>バージョン:</strong> 1.0.0
+        </div>
+        
+        <div class="info-item">
+          <strong>機能:</strong>
+          <ul>
+            <li>ページURL・タイトルの自動取得</li>
+            <li>ドメインに基づくタグの自動生成</li>
+            <li>カスタムタグの追加・編集</li>
+            <li>メモの追加</li>
+            <li>Discord Webhookを使用した送信</li>
+            <li>送信履歴の保存</li>
+            <li>コンテキストメニューからの共有</li>
+          </ul>
+        </div>
+        
+        <div class="info-item">
+          <strong>ショートカット:</strong>
+          <ul>
+            <li>ポップアップでEnterキー：タグ追加</li>
+            <li>右クリックメニュー：選択テキスト・リンク・画像の共有</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

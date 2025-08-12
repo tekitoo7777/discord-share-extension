@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Generate Icons</title>
+</head>
+<body>
+  <h1>Discord Share Extension Icons</h1>
+  <p>このページをブラウザで開いて、各キャンバスを右クリックして画像として保存してください。</p>
+  
+  <div>
+    <h2>icon16.png</h2>
+    <canvas id="icon16" width="16" height="16"></canvas>
+  </div>
+  
+  <div>
+    <h2>icon48.png</h2>
+    <canvas id="icon48" width="48" height="48"></canvas>
+  </div>
+  
+  <div>
+    <h2>icon128.png</h2>
+    <canvas id="icon128" width="128" height="128"></canvas>
+  </div>
+
+  <script>
+    // アイコンを描画する関数
+    function drawIcon(canvasId, size) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+      
+      // 背景のグラデーション
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#5865F2');
+      gradient.addColorStop(1, '#7289DA');
+      
+      // 背景を描画
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.roundRect(0, 0, size, size, size * 0.2);
+      ctx.fill();
+      
+      // Discordアイコン風のシンプルな図形を描画
+      ctx.fillStyle = 'white';
+      const scale = size / 128;
+      
+      // シェアアイコン（矢印）を描画
+      ctx.save();
+      ctx.translate(size / 2, size / 2);
+      ctx.scale(scale * 3, scale * 3);
+      
+      // 矢印の描画
+      ctx.beginPath();
+      ctx.moveTo(10, 0);
+      ctx.lineTo(0, -10);
+      ctx.lineTo(0, -4);
+      ctx.lineTo(-8, -4);
+      ctx.lineTo(-8, 4);
+      ctx.lineTo(0, 4);
+      ctx.lineTo(0, 10);
+      ctx.closePath();
+      ctx.fill();
+      
+      // ドット（Discord風）
+      ctx.beginPath();
+      ctx.arc(-12, -8, 3, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.beginPath();
+      ctx.arc(-12, 8, 3, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.restore();
+      
+      // タグシンボル（#）を追加
+      ctx.font = `bold ${size * 0.3}px Arial`;
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.fillText('#', size * 0.1, size * 0.9);
+    }
+    
+    // 各サイズのアイコンを描画
+    drawIcon('icon16', 16);
+    drawIcon('icon48', 48);
+    drawIcon('icon128', 128);
+  </script>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f0f0;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      margin: 10px;
+      background: white;
+      display: block;
+    }
+    div {
+      margin: 20px 0;
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,390 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.header {
+  background: linear-gradient(135deg, #5865F2 0%, #7289DA 100%);
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.header h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 28px;
+}
+
+.discord-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.tabs {
+  display: flex;
+  background: #f7fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 15px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: #718096;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-button:hover {
+  background: #edf2f7;
+}
+
+.tab-button.active {
+  color: #5865F2;
+  border-bottom-color: #5865F2;
+  background: white;
+}
+
+.tab-content {
+  display: none;
+  padding: 30px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  color: #2d3748;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.section h3 {
+  color: #4a5568;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.description {
+  color: #718096;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.input-field {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #5865F2;
+  box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, #5865F2 0%, #7289DA 100%);
+  color: white;
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
+}
+
+.button-secondary {
+  background: #718096;
+  color: white;
+}
+
+.button-secondary:hover {
+  background: #4a5568;
+}
+
+.button-danger {
+  background: #f56565;
+  color: white;
+}
+
+.button-danger:hover {
+  background: #e53e3e;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.status-message {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 15px;
+  display: none;
+}
+
+.status-message.success {
+  display: block;
+  background: #c6f6d5;
+  color: #22543d;
+  border: 1px solid #9ae6b4;
+}
+
+.status-message.error {
+  display: block;
+  background: #fed7d7;
+  color: #742a2a;
+  border: 1px solid #fc8181;
+}
+
+.status-message.info {
+  display: block;
+  background: #bee3f8;
+  color: #2c5282;
+  border: 1px solid #90cdf4;
+}
+
+.help-section {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f7fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.help-section summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #4a5568;
+  user-select: none;
+}
+
+.help-section ol {
+  margin-top: 10px;
+  margin-left: 20px;
+  color: #718096;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.saved-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 15px;
+  background: #f7fafc;
+  border-radius: 8px;
+  min-height: 60px;
+}
+
+.saved-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  font-size: 13px;
+}
+
+.saved-tag button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 2px;
+  opacity: 0.8;
+}
+
+.saved-tag button:hover {
+  opacity: 1;
+}
+
+.tag-stats {
+  padding: 15px;
+  background: #f7fafc;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.tag-stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tag-stat-item:last-child {
+  border-bottom: none;
+}
+
+.tag-stat-name {
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.tag-stat-count {
+  background: #edf2f7;
+  color: #718096;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.history-controls {
+  margin-bottom: 20px;
+}
+
+.history-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.history-item {
+  padding: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.2s;
+}
+
+.history-item:hover {
+  border-color: #cbd5e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.history-title {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 5px;
+  display: block;
+  text-decoration: none;
+}
+
+.history-title:hover {
+  color: #5865F2;
+}
+
+.history-url {
+  color: #718096;
+  font-size: 12px;
+  margin-bottom: 5px;
+  word-break: break-all;
+}
+
+.history-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.history-tag {
+  display: inline-block;
+  padding: 2px 6px;
+  background: #edf2f7;
+  color: #718096;
+  border-radius: 8px;
+  font-size: 11px;
+}
+
+.history-date {
+  color: #a0aec0;
+  font-size: 11px;
+  margin-top: 8px;
+}
+
+.history-memo {
+  color: #4a5568;
+  font-size: 13px;
+  margin-top: 8px;
+  padding: 8px;
+  background: #f7fafc;
+  border-radius: 6px;
+}
+
+.info-item {
+  margin-bottom: 20px;
+  color: #4a5568;
+  font-size: 14px;
+}
+
+.info-item strong {
+  color: #2d3748;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.info-item ul {
+  margin-left: 20px;
+  line-height: 1.8;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #a0aec0;
+}
+
+.empty-state svg {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
